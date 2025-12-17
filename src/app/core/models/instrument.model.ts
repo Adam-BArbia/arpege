@@ -9,6 +9,15 @@ export interface Instrument {
   description: string;
   family?: string;
   subfamily?: string;
+  longDescription?: string;
+  specifications?: { [key: string]: string | number | boolean };
+  materials?: string;
+  dimensions?: string;
+  weight?: string;
+  warranty?: string;
+  rating?: number;
+  reviews?: number;
+  inStock?: boolean;
 }
 
 //compatibility for reference "Instrument3"

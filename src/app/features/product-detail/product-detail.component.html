@@ -34,9 +34,9 @@
       </div>
 
       <!-- Rating -->
-      <div class="rating">
-        <span class="stars">⭐⭐⭐⭐⭐</span>
-        <span class="review-count">(47 avis)</span>
+      <div class="rating" *ngIf="instrument!.rating as r">
+        <span class="stars">{{ r | number:'1.1-1' }}★</span>
+        <span class="review-count" *ngIf="instrument!.reviews">({{ instrument!.reviews }} avis)</span>
       </div>
 
       <!-- Price & Stock -->
@@ -50,7 +50,18 @@
       <!-- Description -->
       <div class="description">
         <h3>À propos</h3>
-        <p>{{ instrument!.description }}</p>
+        <p>{{ instrument!.longDescription || instrument!.description }}</p>
+      </div>
+
+      <!-- Specifications -->
+      <div class="specs" *ngIf="instrument!.specifications">
+        <h3>Caractéristiques techniques</h3>
+        <div class="specs-grid">
+          <div class="spec-item" *ngFor="let spec of instrument!.specifications | keyvalue">
+            <span class="label">{{ spec.key | titlecase }}</span>
+            <span class="value">{{ spec.value }}</span>
+          </div>
+        </div>
       </div>
 
       <!-- Features -->
@@ -111,6 +122,28 @@
         <div class="info-row">
           <span class="label">Réf:</span>
           <span class="value">#{{ instrument!.id }}</span>
+        </div>
+        <div class="info-row" *ngIf="instrument!.materials">
+          <span class="label">Matériaux:</span>
+          <span class="value">{{ instrument!.materials }}</span>
+        </div>
+        <div class="info-row" *ngIf="instrument!.dimensions">
+          <span class="label">Dimensions:</span>
+          <span class="value">{{ instrument!.dimensions }}</span>
+        </div>
+        <div class="info-row" *ngIf="instrument!.weight">
+          <span class="label">Poids:</span>
+          <span class="value">{{ instrument!.weight }}</span>
+        </div>
+        <div class="info-row" *ngIf="instrument!.warranty">
+          <span class="label">Garantie:</span>
+          <span class="value">{{ instrument!.warranty }}</span>
+        </div>
+        <div class="info-row" *ngIf="instrument!.inStock !== undefined">
+          <span class="label">Disponibilité:</span>
+          <span class="value" [class.available]="instrument!.inStock" [class.unavailable]="!instrument!.inStock">
+            {{ instrument!.inStock ? 'Disponible' : 'Indisponible' }}
+          </span>
         </div>
       </div>
     </section>

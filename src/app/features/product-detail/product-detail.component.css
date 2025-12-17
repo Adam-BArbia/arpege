@@ -558,3 +558,72 @@ button:hover {
   background: #667eea;
   color: #fff;
 }
+
+/* Specs section */
+.specs {
+  margin: 24px 0 32px 0;
+}
+
+.specs h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: #f9f9f9;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+}
+
+.spec-item .label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.spec-item .value {
+  font-size: 13px;
+  color: #333;
+}
+
+/* Quick info rows */
+.quick-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+}
+
+.quick-info .info-row {
+  display: flex;
+  gap: 8px;
+}
+
+.quick-info .label {
+  width: 120px;
+  color: #666;
+  font-weight: 600;
+}
+
+.quick-info .value {
+  color: #333;
+}
+
+.quick-info .value.available {
+  color: #27ae60;
+}
+
+.quick-info .value.unavailable {
+  color: #e53935;
+}

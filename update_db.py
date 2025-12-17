@@ -1,0 +1,187 @@
+import json
+
+# Complete product data with detailed descriptions
+products_data = [
+    {
+        "id": "3",
+        "name": "Violon 4/4 Étude",
+        "brand": "Stentor",
+        "description": "Violon complet avec archet et étui.",
+        "longDescription": "Violon 4/4 pour débutants et étudiants. Table épicéa avec fond et boas acajou. Archet en bois brésilien avec crins blancs naturels. Menton repos, chevalet préréglé. Livré avec étui rigide, colophane et chiffon. Réglage d'usine professionnel.",
+        "specifications": {"size": "4/4", "topWood": "Épicéa massif", "backWood": "Acajou massif", "frets": "4 cordes"},
+        "materials": "Bois massif naturel, crins blancs",
+        "dimensions": "59cm x 21cm x 9cm",
+        "weight": "0.42kg",
+        "warranty": "1 an",
+        "rating": 4.6,
+        "reviews": 89,
+        "inStock": True,
+        "price": 219,
+        "stock": 6,
+        "imageUrl": "/assets/Violon 4-4 Étude (Stentor style).jpg",
+        "category": "Violon",
+        "family": "String Instruments (Chordophones)",
+        "subfamily": "Bowed"
+    },
+    {
+        "id": "4",
+        "name": "Batterie Électronique Compacte",
+        "brand": "Alesis",
+        "description": "Batterie silencieuse pour petits espaces.",
+        "longDescription": "Batterie électronique ultra-compacte avec pads silencieux en caoutchouc. 10 pads sensibles à la vélocité, 200 sons de batterie, 200 rythmes. Écouteurs casque pour pratique discrète. Sortie ligne stéréo, enregistrement USB intégré. Alimentation piles ou adaptateur. Portable et durable.",
+        "specifications": {"pads": "10 silencieux", "sounds": "200", "rhythms": "200", "recording": "USB"},
+        "materials": "Plastique renforcé, caoutchouc",
+        "dimensions": "65cm x 60cm x 10cm",
+        "weight": "3.5kg",
+        "warranty": "2 ans",
+        "rating": 4.5,
+        "reviews": 156,
+        "inStock": True,
+        "price": 529,
+        "stock": 4,
+        "imageUrl": "/assets/Batterie Électronique Compacte (Alesis style).jpg",
+        "category": "Batterie",
+        "family": "Percussion Instruments",
+        "subfamily": "Membranophone"
+    },
+    {
+        "id": "5",
+        "name": "Guitare Électrique ST",
+        "brand": "Fender",
+        "description": "Guitare électrique polyvalente et éclatante.",
+        "longDescription": "Guitare ST de style Fender avec corps aulne léger et confortable. 3 micros simple-bobinage offrant variété sonore du clair au crunch. Sélecteur 5 positions pour infinies possibilités tonales. Vibrato synchronisé précis, manche bolt-on. Idéale rock, pop, blues. Tremolo smooth, tuners scellés. Câble et sangles inclus.",
+        "specifications": {"bodyWood": "Aulne léger", "neckWood": "Érable", "pickups": "3 simples", "selector": "5 positions", "frets": "22"},
+        "materials": "Bois massif et pièces nickel",
+        "dimensions": "96cm x 32cm x 5cm",
+        "weight": "3.2kg",
+        "warranty": "2 ans",
+        "rating": 4.7,
+        "reviews": 203,
+        "inStock": True,
+        "price": 749,
+        "stock": 6,
+        "imageUrl": "/assets/Guitare Électrique ST (Fender style).jpg",
+        "category": "Guitare",
+        "family": "String Instruments (Chordophones)",
+        "subfamily": "Plucked"
+    },
+    {
+        "id": "6",
+        "name": "Basse 4 Cordes JB",
+        "brand": "Squier",
+        "description": "Basse électrique accessible et sonore.",
+        "longDescription": "Basse 4 cordes avec corps acajou et manche fin confortable. 2 micros humbucking pour son riche et profond. Bridge massif pour sustain excellent. Sélecteur 3 positions, contrôles tonalité et volume. Parfaite débutants et intermédiaires. Pour funk, rock, blues, métal léger. Tuners qualité, câble fourni.",
+        "specifications": {"bodyWood": "Acajou", "neckWood": "Érable", "pickups": "2 humbucking", "frets": "20"},
+        "materials": "Bois massif et pièces nickel",
+        "dimensions": "104cm x 33cm x 6cm",
+        "weight": "3.8kg",
+        "warranty": "2 ans",
+        "rating": 4.6,
+        "reviews": 134,
+        "inStock": True,
+        "price": 389,
+        "stock": 7,
+        "imageUrl": "/assets/Basse 4 Cordes JB (Squier style).jpg",
+        "category": "Basse",
+        "family": "String Instruments (Chordophones)",
+        "subfamily": "Plucked"
+    },
+    {
+        "id": "7",
+        "name": "Clavier Arrangeur 61 touches",
+        "brand": "Casio",
+        "description": "Clavier avec 600+ styles et accompagnements.",
+        "longDescription": "Clavier arrangeur 61 touches pour débutants et amateurs. 600+ styles musicaux intégrés (pop, rock, jazz, latin, folk, classique). Accompagnements automatiques programmables, drums personnalisés. 800+ sons haute qualité. Enregistrement 4 pistes intégré. Écran LCD, connexion microphone karaoké. Sortie audio stéréo, casque 3.5mm. Fonction MIDI complète.",
+        "specifications": {"keys": "61 touches", "sounds": "800+", "styles": "600+", "recording": "4 pistes", "display": "LCD"},
+        "materials": "Plastique renforcé ABS",
+        "dimensions": "94cm x 34cm x 9cm",
+        "weight": "4.2kg",
+        "warranty": "2 ans",
+        "rating": 4.4,
+        "reviews": 98,
+        "inStock": True,
+        "price": 259,
+        "stock": 10,
+        "imageUrl": "/assets/Clavier Arrangeur 61 touches (Casio style).jpg",
+        "category": "Clavier",
+        "family": "Keyboard & Electronic Instruments",
+        "subfamily": "Electronic Keyboard"
+    },
+    {
+        "id": "8",
+        "name": "Ukulélé Concert Acajou",
+        "brand": "Kala",
+        "description": "Ukulélé concert au son chaud et projeté.",
+        "longDescription": "Ukulélé concert 23 pouces en acajou massif. Format idéal pour son riche et équilibré. Cordes Aquila nylon blanches. Mécanique frein lisse pour accordage stable. Sillet et chevalet en os véritable. Sangle tissée et étui de transport inclus. Parfait débutants et intermédiaires. Apprentissage facile, portabilité excellente.",
+        "specifications": {"size": "23\" concert", "wood": "Acajou massif", "strings": "Aquila nylon", "hardware": "Chrome"},
+        "materials": "Acajou, os naturel",
+        "dimensions": "58cm x 18cm x 7cm",
+        "weight": "0.45kg",
+        "warranty": "1 an",
+        "rating": 4.7,
+        "reviews": 178,
+        "inStock": True,
+        "price": 129,
+        "stock": 15,
+        "imageUrl": "/assets/Ukulélé Concert Acajou (Kala style).jpg",
+        "category": "Ukulele",
+        "family": "String Instruments (Chordophones)",
+        "subfamily": "Plucked"
+    },
+    {
+        "id": "9",
+        "name": "Saxophone Alto Étude",
+        "brand": "Yamaha",
+        "description": "Saxophone pour débutants avec justesse fiable.",
+        "longDescription": "Saxophone alto Mib pour étudiants et débutants. Clé Fa# standard, justesse fiable. Corps et mécanisme nickelé. Anche de canne mi(3) incluse. Livrée avec goulot courbe, bouchon de protection, chiffon et étui. Réglage d'usine précis. Idéale pour orchestre, jazz débutant, musique classique.",
+        "specifications": {"key": "Mib", "clef": "Fa#", "finish": "Nickelé", "reed": "Mi(3)"},
+        "materials": "Laiton nickelé, liège",
+        "dimensions": "65cm x 10cm x 8cm",
+        "weight": "1.4kg",
+        "warranty": "2 ans",
+        "rating": 4.5,
+        "reviews": 112,
+        "inStock": True,
+        "price": 899,
+        "stock": 3,
+        "imageUrl": "/assets/Saxophone Alto Étude (Yamaha style).jpg",
+        "category": "Saxophone",
+        "family": "Wind Instruments (Aerophones)",
+        "subfamily": "Woodwind"
+    },
+    {
+        "id": "10",
+        "name": "Flûte Traversière Argentée",
+        "brand": "Pearl",
+        "description": "Flûte traversière avec réponse rapide.",
+        "longDescription": "Flûte traversière en argent 925 de qualité concert. Tête en maillechort, corps et clés en argent. Réponse rapide et précise. Système de clés Muramatsu modifié. Fini poli miroir. Livrée avec étui rigide, stand de flûte, porte-gaze, tournevis. Idéale étudiants avancés et musiciens semi-professionnels.",
+        "specifications": {"material": "Argent 925", "headjoint": "Maillechort", "keywork": "Argent massif", "system": "Muramatsu"},
+        "materials": "Argent massif, maillechort",
+        "dimensions": "67cm x 3cm x 2cm",
+        "weight": "0.32kg",
+        "warranty": "2 ans",
+        "rating": 4.8,
+        "reviews": 94,
+        "inStock": True,
+        "price": 569,
+        "stock": 5,
+        "imageUrl": "/assets/Flûte Traversière Argentée (Pearl style)jpg.jpg",
+        "category": "Flûte",
+        "family": "Wind Instruments (Aerophones)",
+        "subfamily": "Woodwind"
+    }
+]
+
+# Read current db.json
+with open('db.json', 'r', encoding='utf-8') as f:
+    db = json.load(f)
+
+# Update products 3-10
+for i, product in enumerate(products_data, start=2):  # Start from index 2 (product 3)
+    db['instruments'][i] = product
+
+# Save updated db.json
+with open('db.json', 'w', encoding='utf-8') as f:
+    json.dump(db, f, ensure_ascii=False, indent=2)
+
+print("Updated products 3-10")
