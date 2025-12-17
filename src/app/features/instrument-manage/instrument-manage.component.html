@@ -1,0 +1,116 @@
+<section class="wrap">
+  <header class="head">
+    <h2>Gestion des instruments</h2>
+    <div class="actions">
+      <input
+        class="search"
+        type="search"
+        placeholder="Rechercher (nom, marque, catégorie, famille)"
+        [value]="q()"
+        (input)="onSearchInput($event)"
+      />
+      <button class="btn" (click)="startCreate()">Nouvel instrument</button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <form class="card form" [formGroup]="form" (ngSubmit)="submit()">
+      <h3>{{ editingId == null ? 'Ajouter' : 'Modifier' }} un instrument</h3>
+
+      <div class="row">
+        <label>Nom</label>
+        <input type="text" formControlName="name" />
+      </div>
+
+      <div class="row">
+        <label>Marque</label>
+        <input type="text" formControlName="brand" />
+      </div>
+
+      <div class="row">
+        <label>Catégorie</label>
+        <input list="catlist" type="text" formControlName="category" />
+        <datalist id="catlist">
+          <option *ngFor="let c of categories" [value]="c"></option>
+        </datalist>
+      </div>
+
+      <div class="row two">
+        <div>
+          <label>Prix (€)</label>
+          <input type="number" formControlName="price" min="0" step="1" />
+        </div>
+        <div>
+          <label>Stock</label>
+          <input type="number" formControlName="stock" min="0" step="1" />
+        </div>
+      </div>
+
+      <div class="row">
+        <label>Image URL (src/assets/...)</label>
+        <input type="text" formControlName="imageUrl" placeholder="/assets/Mon Image.jpg" />
+      </div>
+
+      <div class="row">
+        <label>Description</label>
+        <textarea rows="3" formControlName="description"></textarea>
+      </div>
+
+      <div class="row two">
+        <div>
+          <label>Famille</label>
+          <input list="famlist" type="text" formControlName="family" (change)="onFamilyChange()" />
+          <datalist id="famlist">
+            <option *ngFor="let f of families" [value]="f"></option>
+          </datalist>
+        </div>
+        <div>
+          <label>Sous-famille</label>
+          <input list="sublist" type="text" formControlName="subfamily" />
+          <datalist id="sublist">
+            <option *ngFor="let s of subfamilies" [value]="s"></option>
+          </datalist>
+        </div>
+      </div>
+
+      <div class="row actions">
+        <button class="btn primary" type="submit">{{ editingId == null ? 'Ajouter' : 'Enregistrer' }}</button>
+        <button class="btn" type="button" (click)="startCreate()">Réinitialiser</button>
+      </div>
+    </form>
+
+    <div class="card table">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Nom</th>
+            <th>Marque</th>
+            <th>Catégorie</th>
+            <th>Prix</th>
+            <th>Stock</th>
+            <th>Famille</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of filtered">
+            <td>{{ i.id }}</td>
+            <td><img [src]="i.imageUrl" [alt]="i.name" class="thumb" /></td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.brand }}</td>
+            <td>{{ i.category }}</td>
+            <td>{{ i.price | currency:'EUR' }}</td>
+            <td>{{ i.stock }}</td>
+            <td>{{ i.family || '-' }}</td>
+            <td class="row-actions">
+              <button class="link" (click)="startEdit(i)">Éditer</button>
+              <button class="link danger" (click)="remove(i)">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

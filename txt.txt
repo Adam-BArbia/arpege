@@ -1,0 +1,56 @@
+Plan
+- Build Arpège e-boutique (instruments) reusing AngularCRUD patterns (standalone comps, HttpClient, routing, json-server).
+- No auth, no payment.
+- Features: Home (landing), Catalog (list/add cart), Product detail, Cart (in-memory), CRUD-ready API service, model.
+- Data source: json-server on db.json (instruments).
+
+Target structure
+src/
+  app/
+    app.config.ts
+    app.routes.ts
+    app.component.{ts,html,css}
+    core/
+      models/
+        instrument.model.ts
+      services/
+        api.service.ts
+        cart.service.ts
+    features/
+      home/
+        home.component.{ts,html,css}
+      catalog/
+        catalog.component.{ts,html,css}
+      product-detail/
+        product-detail.component.{ts,html,css}
+      cart/
+        cart.component.{ts,html,css}
+
+Liste des instruments Arpège (25 produits)
+==========================================
+
+1. Guitare Folk Dreadnought (Yamaha style)
+2. Piano Numérique 88 touches (Roland style)
+3. Violon 4/4 Étude (Stentor style)
+4. Batterie Électronique Compacte (Alesis style)
+5. Guitare Électrique ST (Fender style)
+6. Basse 4 Cordes JB (Squier style)
+7. Clavier Arrangeur 61 touches (Casio style)
+8. Ukulélé Concert Acajou (Kala style)
+9. Saxophone Alto Étude (Yamaha style)
+10. Flûte Traversière Argentée (Pearl style)
+11. Cajón Flamenco (Meinl style)
+12. Mandoline A-Style (Ibanez style)
+13. Clarinette Sib Étude (Buffet Crampon style)
+14. Harmonica Diatonique C (Hohner style)
+15. Guitare Classique 4/4 (Cordoba style)
+16. Trompette Laiton Professionnel (Yamaha style)
+17. Trombone Coulisse Étude (Bach style)
+18. Cor Français Simple (Alexander style)
+19. Métallophone Éducatif 25 lames (Stagg style)
+20. Synthétiseur Portable 61 touches (Korg style)
+21. Banjo 5 Cordes Folk (Deering style)
+22. Accordéon Diatonique Chromatic (Hohner style)
+23. Orgue Électronique Portable (Hammond style)
+24. Luth Renaissance Cordes Nylon (Calace style)
+25. Oud Moyen-Oriental Acoustique (Ud Turk style)

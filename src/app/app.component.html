@@ -1,0 +1,19 @@
+
+<nav class="navbar">
+  <div class="nav-content">
+    <a routerLink="/" class="logo">🎵 Arpège</a>
+    <ul class="nav-links">
+      <li><a routerLink="/">Accueil</a></li>
+      <li><a routerLink="/catalog">Catalogue</a></li>
+      <li><a routerLink="/cart">Panier</a></li>
+      <li><a routerLink="/admin/instruments" class="admin-link">Admin</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="container">
+  <router-outlet></router-outlet>
+</main>
+
+
+<router-outlet />

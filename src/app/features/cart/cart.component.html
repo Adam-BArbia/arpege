@@ -1,0 +1,119 @@
+<section class="cart-wrapper">
+  <div class="cart-header">
+    <h1>🛒 Mon Panier</h1>
+    <a routerLink="/catalog" class="back-link">← Continuer mes achats</a>
+  </div>
+
+  <!-- Empty Cart State -->
+  <div *ngIf="!cartItems.length" class="empty-state">
+    <div class="empty-icon">🛒</div>
+    <h2>Votre panier est vide</h2>
+    <p>Découvrez notre collection d'instruments de musique</p>
+    <a routerLink="/catalog" class="cta-btn">Explorer le catalogue</a>
+  </div>
+
+  <!-- Cart Content -->
+  <div *ngIf="cartItems.length" class="cart-layout">
+    <!-- Left: Cart Items -->
+    <div class="cart-items">
+      <div *ngFor="let item of getUniqueInstruments()" class="cart-item">
+        <div class="item-clickable" [routerLink]="['/catalog', item.instrument.id]">
+          <div class="item-image">
+            <img [src]="item.instrument.imageUrl" [alt]="item.instrument.name" />
+          </div>
+          
+          <div class="item-details">
+            <h3 class="item-name">
+              {{ item.instrument.name }}
+            </h3>
+            <p class="item-meta">
+              {{ item.instrument.brand }} • {{ item.instrument.category }}
+            </p>
+            <p class="item-price-mobile">{{ item.instrument.price | currency:'EUR' }}</p>
+          </div>
+        </div>
+
+        <div class="item-actions">
+          <div class="quantity-controls">
+            <button 
+              class="qty-btn minus" 
+              (click)="removeOneItem(item.instrument.id)"
+              [disabled]="item.count <= 1"
+            >
+              −
+            </button>
+            <span class="qty-display">{{ item.count }}</span>
+            <button 
+              class="qty-btn plus" 
+              (click)="addToCart(item.instrument)"
+              [disabled]="item.count >= item.instrument.stock"
+            >
+              &#43;
+            </button>
+          </div>
+          
+          <button 
+            class="remove-btn" 
+            (click)="removeItem(item.instrument.id)"
+            title="Retirer du panier"
+          >
+            <span class="remove-icon">🗑️</span>
+            <span class="remove-text">Retirer</span>
+          </button>
+        </div>
+
+        <div class="item-total" [routerLink]="['/catalog', item.instrument.id]">
+          <span class="price">{{ (item.instrument.price * item.count) | currency:'EUR' }}</span>
+          <span class="unit-price">{{ item.instrument.price | currency:'EUR' }} / unité</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Order Summary -->
+    <aside class="order-summary">
+      <div class="summary-card">
+        <h2>Résumé de la commande</h2>
+        
+        <div class="summary-row">
+          <span>Articles ({{ cartItems.length }})</span>
+          <span>{{ total | currency:'EUR' }}</span>
+        </div>
+        
+        <div class="summary-row">
+          <span>Livraison</span>
+          <span class="free">Gratuite</span>
+        </div>
+        
+        <div class="summary-divider"></div>
+        
+        <div class="summary-total">
+          <span>Total TTC</span>
+          <span class="total-amount">{{ total | currency:'EUR' }}</span>
+        </div>
+        
+        <button class="checkout-btn" (click)="checkout()">
+          Confirmer la commande
+        </button>
+        
+        <button class="clear-btn" (click)="clearCart()">
+          Vider le panier
+        </button>
+
+        <div class="trust-badges">
+          <div class="badge">
+            <span>🔒</span>
+            <span>Paiement sécurisé</span>
+          </div>
+          <div class="badge">
+            <span>🚚</span>
+            <span>Livraison rapide</span>
+          </div>
+          <div class="badge">
+            <span>🔄</span>
+            <span>Retour gratuit 30j</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>

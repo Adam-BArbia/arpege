@@ -1,0 +1,169 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-background"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>Bienvenue chez <span class="brand-name">Arpège</span></h1>
+      <p class="hero-subtitle">Votre destination pour les instruments de musique de qualité</p>
+      <p class="hero-description">Découvrez une collection soigneusement sélectionnée d'instruments pour tous les niveaux, des débutants aux musiciens professionnels.</p>
+      <button class="cta-btn" (click)="goToCatalog()">Explorer le catalogue →</button>
+    </div>
+    <div class="hero-image">
+      <div class="guitar-illustration">🎸</div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+  <h2>Pourquoi choisir Arpège?</h2>
+  <div class="features-grid">
+    <div class="feature">
+      <div class="feature-icon">🎵</div>
+      <h3>Large Sélection</h3>
+      <p>15+ instruments de qualité professionnelle des meilleures marques mondiales</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <h3>Livraison Express</h3>
+      <p>Livraison rapide et gratuite sur toutes vos commandes, où que vous soyez</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">✨</div>
+      <h3>Qualité Garantie</h3>
+      <p>Tous nos instruments sont testés et garantis pour vous offrir le meilleur</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔒</div>
+      <h3>Paiement Sécurisé</h3>
+      <p>Transactions 100% sécurisées avec les meilleures technologies du marché</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🎓</div>
+      <h3>Support Expert</h3>
+      <p>Équipe d'experts prête à vous conseiller pour trouver l'instrument idéal</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">💰</div>
+      <h3>Meilleur Prix</h3>
+      <p>Prix compétitifs garantis avec une politique de satisfaction client</p>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories">
+  <h2>Parcourez par catégorie</h2>
+  <div class="categories-grid">
+    <div class="category-card" (click)="goToCategory('Guitare')">
+      <div class="category-icon">🎸</div>
+      <h3>Guitares</h3>
+      <p>Folk, Électrique, Classique</p>
+      <span class="arrow">→</span>
+    </div>
+    <div class="category-card" (click)="goToCategory('Piano')">
+      <div class="category-icon">🎹</div>
+      <h3>Pianos & Claviers</h3>
+      <p>Numériques et Acoustiques</p>
+      <span class="arrow">→</span>
+    </div>
+    <div class="category-card" (click)="goToCategory('Violon')">
+      <div class="category-icon">🎻</div>
+      <h3>Instruments à Cordes</h3>
+      <p>Violon, Basse, Mandoline</p>
+      <span class="arrow">→</span>
+    </div>
+    <div class="category-card" (click)="goToCategory('Batterie')">
+      <div class="category-icon">🥁</div>
+      <h3>Percussions</h3>
+      <p>Batterie, Cajón</p>
+      <span class="arrow">→</span>
+    </div>
+    <div class="category-card" (click)="goToCategory('Saxophone')">
+      <div class="category-icon">🎷</div>
+      <h3>Instruments à Vent</h3>
+      <p>Saxophone, Flûte, Clarinette</p>
+      <span class="arrow">→</span>
+    </div>
+    <div class="category-card" (click)="goToCategory('Ukulele')">
+      <div class="category-icon">🪕</div>
+      <h3>Autres Instruments</h3>
+      <p>Ukulélé, Harmonica</p>
+      <span class="arrow">→</span>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+  <div class="stat-item">
+    <div class="stat-number">15+</div>
+    <p>Instruments</p>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">10+</div>
+    <p>Marques Premium</p>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">5000+</div>
+    <p>Clients Satisfaits</p>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">24/7</div>
+    <p>Support Client</p>
+  </div>
+</section>
+
+<!-- Featured Products Teaser -->
+<section class="featured-teaser">
+  <h2>Produits en Vedette</h2>
+  <p class="teaser-subtitle">Découvrez nos sélections les plus populaires</p>
+  <button class="cta-btn-secondary" (click)="goToCatalog()">Voir tous les produits</button>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+  <h2>Ce que nos clients disent</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p>"Instruments de très bonne qualité et livraison rapide. Très satisfait!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">JP</div>
+        <div>
+          <p class="author-name">Jean Paul M.</p>
+          <p class="author-role">Client vérifié</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p>"Service client excellent et produits conformes à la description. Recommandé!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">ML</div>
+        <div>
+          <p class="author-name">Marie L.</p>
+          <p class="author-role">Client vérifié</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p>"Parfait pour débuter la musique. Très bon rapport qualité/prix!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">PD</div>
+        <div>
+          <p class="author-name">Pierre D.</p>
+          <p class="author-role">Client vérifié</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+  <h2>Prêt à Commencer Votre Aventure Musicale?</h2>
+  <p>Trouvez l'instrument parfait pour vous et commencez à jouer dès maintenant</p>
+  <button class="cta-btn-large" (click)="goToCatalog()">Commencer maintenant</button>
+</section>

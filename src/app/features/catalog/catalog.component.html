@@ -1,0 +1,105 @@
+<section class="catalog-wrapper">
+
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <div class="filters-row">
+      <div class="search-box">
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          (input)="onSearchChange()"
+          placeholder="Rechercher un instrument, une marque..."
+          class="search-input"
+        />
+      </div>
+
+      <div class="filter-group">
+        <label>Catégorie</label>
+        <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()" class="filter-select">
+          <option value="">Toutes</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Famille</label>
+        <select [(ngModel)]="selectedFamily" (change)="onFamilyChange()" class="filter-select">
+          <option value="">Toutes</option>
+          <option *ngFor="let fam of families" [value]="fam">{{ fam }}</option>
+        </select>
+      </div>
+
+      <div class="filter-group" *ngIf="subfamilies.length > 0">
+        <label>Sous-famille</label>
+        <select [(ngModel)]="selectedSubfamily" (change)="onSubfamilyChange()" class="filter-select">
+          <option value="">Toutes</option>
+          <option *ngFor="let sub of subfamilies" [value]="sub">{{ sub }}</option>
+        </select>
+      </div>
+
+      <button class="reset-btn" (click)="resetFilters()">🔄 Réinitialiser</button>
+    </div>
+  </div>
+
+  <!-- Results Count -->
+  <div class="results-info">
+    <p>{{ filteredInstruments.length }} instrument(s) trouvé(s)</p>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Chargement des instruments...</p>
+  </div>
+
+  <!-- Products Grid -->
+  <div *ngIf="!loading" class="products-grid">
+    <div 
+      *ngFor="let instrument of filteredInstruments" 
+      class="product-card"
+      [routerLink]="['/catalog', instrument.id]"
+    >
+      <div class="card-image">
+        <img [src]="instrument.imageUrl" [alt]="instrument.name" />
+        <span class="badge">{{ instrument.category }}</span>
+        <div class="stock-badge" [class.low]="instrument.stock < 5" [class.out]="instrument.stock === 0">
+          {{ instrument.stock > 0 ? instrument.stock + ' en stock' : 'Rupture' }}
+        </div>
+      </div>
+
+      <div class="card-content">
+        <h3 class="product-name">{{ instrument.name }}</h3>
+        <p class="product-brand">{{ instrument.brand }}</p>
+        
+        <div class="product-meta" *ngIf="instrument.family">
+          <span class="meta-tag">{{ instrument.family }}</span>
+          <span class="meta-tag secondary" *ngIf="instrument.subfamily">{{ instrument.subfamily }}</span>
+        </div>
+
+        <div class="card-footer">
+          <div class="price-section">
+            <span class="price">{{ instrument.price | currency:'EUR' }}</span>
+          </div>
+          
+          <button 
+            class="add-btn" 
+            (click)="addToCart(instrument); $event.stopPropagation()"
+            [disabled]="instrument.stock === 0"
+            [class.disabled]="instrument.stock === 0"
+          >
+            <span *ngIf="instrument.stock > 0">🛒 Ajouter</span>
+            <span *ngIf="instrument.stock === 0">Rupture</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && filteredInstruments.length === 0" class="empty-state">
+    <div class="empty-icon">🔍</div>
+    <h2>Aucun instrument trouvé</h2>
+    <p>Essayez de modifier vos critères de recherche</p>
+    <button class="reset-btn" (click)="resetFilters()">Réinitialiser les filtres</button>
+  </div>
+</section>

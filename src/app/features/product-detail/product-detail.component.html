@@ -1,0 +1,158 @@
+
+
+<div *ngIf="loading" class="loading">Chargement...</div>
+
+<div class="detail-wrapper" *ngIf="!loading">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a routerLink="/catalog">← Retour au catalogue</a>
+  </div>
+
+  <div class="detail-grid">
+    <!-- Left: Image Section -->
+    <section class="image-section">
+      <div class="image-container">
+        <img [src]="instrument!.imageUrl" [alt]="instrument!.name" class="main-image" />
+        <div class="badge" *ngIf="instrument!.stock > 0">En stock</div>
+        <div class="badge out" *ngIf="instrument!.stock === 0">Rupture</div>
+      </div>
+    </section>
+
+    <!-- Right: Info Section -->
+    <section class="info-section">
+      <!-- Header -->
+      <div class="header">
+        <h1>{{ instrument!.name }}</h1>
+        <p class="brand">by {{ instrument!.brand }}</p>
+      </div>
+
+      <!-- Category & Family Tags -->
+      <div class="meta">
+        <span class="tag">{{ instrument!.category }}</span>
+        <span class="tag" *ngIf="instrument!.family">{{ instrument!.family }}</span>
+        <span class="tag secondary" *ngIf="instrument!.subfamily">{{ instrument!.subfamily }}</span>
+      </div>
+
+      <!-- Rating -->
+      <div class="rating">
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span class="review-count">(47 avis)</span>
+      </div>
+
+      <!-- Price & Stock -->
+      <div class="price-section">
+        <div class="price">{{ instrument!.price | currency:'EUR' }}</div>
+        <div class="stock-info" [class.low]="instrument!.stock < 5">
+          {{ instrument!.stock }} disponibles
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="description">
+        <h3>À propos</h3>
+        <p>{{ instrument!.description }}</p>
+      </div>
+
+      <!-- Features -->
+      <div class="features">
+        <div class="feature-item">
+          <span class="icon">🎵</span>
+          <span>Son professionnel</span>
+        </div>
+        <div class="feature-item">
+          <span class="icon">✨</span>
+          <span>Qualité garantie</span>
+        </div>
+        <div class="feature-item">
+          <span class="icon">🚚</span>
+          <span>Livraison rapide</span>
+        </div>
+        <div class="feature-item">
+          <span class="icon">🔒</span>
+          <span>Paiement sécurisé</span>
+        </div>
+      </div>
+
+      <!-- Quantity Selector & Add to Cart -->
+      <div class="action-section">
+        <div class="quantity-selector">
+          <button (click)="decreaseQty()" [disabled]="quantity <= 1" class="qty-btn">−</button>
+          <input type="number" [(ngModel)]="quantity" [max]="instrument!.stock" class="qty-input" readonly />
+          <button (click)="increaseQty()" [disabled]="quantity >= instrument!.stock" class="qty-btn">+</button>
+        </div>
+        <button
+          (click)="addToCart()"
+          [disabled]="instrument!.stock === 0"
+          class="add-to-cart-btn"
+          [class.disabled]="instrument!.stock === 0"
+        >
+          🛒 Ajouter au panier ({{ quantity }})
+        </button>
+      </div>
+
+      <!-- Quick Info -->
+      <div class="quick-info">
+        <div class="info-row">
+          <span class="label">Marque:</span>
+          <span class="value">{{ instrument!.brand }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Catégorie:</span>
+          <span class="value">{{ instrument!.category }}</span>
+        </div>
+        <div class="info-row" *ngIf="instrument!.family">
+          <span class="label">Famille:</span>
+          <span class="value">{{ instrument!.family }}</span>
+        </div>
+        <div class="info-row" *ngIf="instrument!.subfamily">
+          <span class="label">Sous-famille:</span>
+          <span class="value">{{ instrument!.subfamily }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Réf:</span>
+          <span class="value">#{{ instrument!.id }}</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Info Cards Section -->
+  <section class="info-cards">
+    <div class="info-card">
+      <h3>📦 Livraison</h3>
+      <p>Livraison gratuite à partir de 50€. Délai de 2-3 jours ouvrables.</p>
+    </div>
+    <div class="info-card">
+      <h3>🔄 Retours</h3>
+      <p>Retours gratuits sous 30 jours si l'instrument ne vous satisfait pas.</p>
+    </div>
+    <div class="info-card">
+      <h3>💬 Support</h3>
+      <p>Notre équipe d'experts est disponible pour répondre à vos questions.</p>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="related-section" *ngIf="relatedInstruments.length > 0">
+    <h2>Produits similaires</h2>
+    <div class="related-grid">
+      <div class="product-card" *ngFor="let item of relatedInstruments" [routerLink]="['/catalog', item.id]">
+        <div class="product-image">
+          <img [src]="item.imageUrl" [alt]="item.name" />
+          <span class="badge small">{{ item.category }}</span>
+        </div>
+        <div class="product-info">
+          <h3>{{ item.name }}</h3>
+          <p class="brand-small">{{ item.brand }}</p>
+          <p class="price">{{ item.price | currency:'EUR' }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Loading State -->
+<div class="loading" *ngIf="loading">
+  <div class="spinner"></div>
+  <p>Chargement du produit...</p>
+</div>
